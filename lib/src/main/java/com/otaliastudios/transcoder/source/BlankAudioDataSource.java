@@ -2,13 +2,13 @@ package com.otaliastudios.transcoder.source;
 
 import android.media.MediaFormat;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.otaliastudios.transcoder.engine.TrackType;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import static com.otaliastudios.transcoder.internal.MediaFormatConstants.MIMETYPE_AUDIO_RAW;
 
@@ -24,9 +24,12 @@ public class BlankAudioDataSource implements DataSource {
     private static final int SAMPLE_RATE = 44100;
     private static final int BITS_PER_SAMPLE = 16;
     private static final int BIT_RATE = CHANNEL_COUNT * SAMPLE_RATE * BITS_PER_SAMPLE;
+    /** 每个周期的采样点数 */
     private static final double SAMPLES_PER_PERIOD = 2048;
+    /** 一个周期的时间 */
     private static final double PERIOD_TIME_SECONDS = SAMPLES_PER_PERIOD / SAMPLE_RATE;
     private static final long PERIOD_TIME_US = (long) (1000000 * PERIOD_TIME_SECONDS);
+    /** 一帧数据大小 */
     private static final int PERIOD_SIZE = (int) (PERIOD_TIME_SECONDS * BIT_RATE / 8);
 
     private final long durationUs;
